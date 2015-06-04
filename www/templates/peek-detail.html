@@ -1,0 +1,23 @@
+<ion-view view-title="Peek Detail">
+    <ion-content class="write-back">
+        <h1 class="my-message school-title-big">{{peek_title}}</h1>
+        <div collection-repeat="message in peekArray">
+            <div class="post" ng-click="goPeekDetailMessage($index)">
+                <div class="row">
+                    <div class="col col-90">
+                        <h4 class="title">{{message.title}}</h4>
+                        <p>{{message.text}}</p>
+                    </div>
+                    <div class="col col-10 up-down">
+                        <p class="block number-result">{{message.rating}}</p>
+                    </div>
+                </div>
+                <div class="row align-bottom">
+                    <p class="time">{{message.date}}</p>
+                    <p class="comments">{{message.comment.length}} comments</p>
+                </div>
+            </div>
+            <div class="bottom-border"></div>
+        </div>
+    </ion-content>
+</ion-view>

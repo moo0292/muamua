@@ -1,0 +1,25 @@
+<ion-view view-title="Profile">
+    <ion-content class="write-back">
+        <ion-refresher pulling-text="Pull to refresh..." on-refresh="refresh()">
+        </ion-refresher>
+        <h1 class="my-message school-title-big">My Message</h1>
+        <div collection-repeat="message in user_posts">
+            <div class="post" ng-click="goToSpecific($index)">
+                <div class="row">
+                    <div class="col col-90">
+                        <h4 class="title">{{message.title}}</h4>
+                        <p>{{message.text}}</p>
+                    </div>
+                    <div class="col col-10 up-down">
+                        <p class="block number-result">{{message.rating}}</p>
+                    </div>
+                </div>
+                <div class="row align-bottom">
+                    <p class="time">{{message.date}}</p>
+                    <p class="comments">{{message.comment.length}} comments</p>
+                </div>
+            </div>
+            <div class="bottom-border"></div>
+        </div>
+    </ion-content>
+</ion-view>

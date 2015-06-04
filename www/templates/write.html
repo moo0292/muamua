@@ -1,0 +1,19 @@
+<ion-view view-title="Write">
+    <ion-content class="write-back">
+        <form>
+            <div class="list">
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">ข้อความ</span>
+                    <input type="text" placeholder="ข้อความ" class="text-message" ng-model="body_text.body" id="text_body">
+                </label>
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">หัวข้อ</span>
+                    <input type="text" placeholder="หัวข้อ" ng-model="body_text.title" id="text_title">
+                </label>
+            </div>
+        </form>
+        <button class="button button-block button-positive submit-button" ng-click="writeMessage()">
+            Submit
+        </button>
+    </ion-content>
+</ion-view>

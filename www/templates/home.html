@@ -1,0 +1,35 @@
+<ion-view view-title="Home">
+    <ion-content class="write-back">
+        <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()">
+        </ion-refresher>
+        <div collection-repeat="message in allMessages">
+            <div class="post">
+                <div class="row">
+                    <div class="col col-90" ng-click="goToSpecific(message.frontNumber)">
+                        <h4 class="title">{{message.title}}</h4>
+                        <p>{{message.text}}</p>
+                    </div>
+                    <div class="col col-10 up-down">
+                        <i ng-show="message.canUpVote" class="icon ion-chevron-up block up-button" ng-click="voteUp(message.frontNumber, message._id)"></i>
+                        <p class="block number-result">{{message.rating}}</p>
+                        <i ng-show="message.canDownVote" class="icon ion-chevron-down block" ng-click="voteDown(message.frontNumber, message._id)"></i>
+                    </div>
+                </div>
+                <div class="row align-bottom" ng-click="goToSpecific(message.frontNumber)">
+                    <p class="time">{{message.date}}</p>
+                    <p class="comments">{{message.comment.length}} comments</p>
+                </div>
+            </div>
+            <div class="bottom-border"></div>
+        </div>
+        <div class="bottom-page"></div>
+    </ion-content>
+    <div class="tabs tabs-icon-top">
+        <a class="tab-item" ng-click="changeToNew()">
+            <i class="icon ion-ios-pulse"></i> ใหม่
+        </a>
+        <a class="tab-item" ng-click="changeToHot()">
+            <i class="icon ion-star"></i> มาเเรง
+        </a>
+    </div>
+</ion-view>

@@ -1,0 +1,229 @@
+/* Empty. Add your own CSS if you like */
+
+.post {}
+
+.align-bottom {
+    position: relative;
+    top: 9px;
+}
+
+.align-bottom-comment {
+    position: relative;
+    top: 9px;
+    padding-top: 40px !important;
+}
+
+.bottom-border {
+    background-color: #d3d3d3;
+    width: 98%;
+    height: 1px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.bottom-border-comment {
+    background-color: #00A388;
+    width: 98%;
+    height: 1px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.label-text-area {
+    margin-top: 30px !important;
+    color: #00A388;
+    height: 160px !important;
+}
+
+.label-tag-area {
+    padding-top: 50px !important;
+    max-height: 20px !important;
+    min-height: 20px !important;
+    height: 20px !important;
+    color: #00A388 !important;
+}
+
+.submit-button {
+    width: 93% !important;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #00A388 !important;
+    border: none;
+    margin-top: 60px !important;
+}
+
+.header-color {
+    color: #00A388 !important;
+}
+
+.chula {
+    width: 100%;
+    height: 23vh;
+    background-image: url('../img/chula.jpg') !important;
+    background-size: cover !important;
+    border-bottom: 2px solid #79BD8F;
+
+}
+
+.mahidol {
+    width: 100%;
+    height: 23vh;
+    background-image: url('../img/mah.jpg') !important;
+    background-size: cover !important;
+    border-bottom: 2px solid #79BD8F;
+}
+
+.kaset {
+    width: 100%;
+    height: 23vh;
+    background-image: url('../img/kas.jpg') !important;
+    background-size: cover !important;
+    border-bottom: 2px solid #79BD8F;
+}
+
+.thammasart {
+    width: 100%;
+    height: 23vh;
+    background-image: url('../img/tham.jpg') !important;
+    background-size: cover !important;
+    border-bottom: 2px solid #79BD8F;
+}
+
+.abac {
+    width: 100%;
+    height: 23vh;
+    background-image: url('../img/abac.jpg') !important;
+    background-size: cover !important;
+    border-bottom: 2px solid #79BD8F;
+}
+
+.kmtt {
+	    width: 100%;
+    height: 23vh;
+    background-image: url('../img/kmut.jpg') !important;
+    background-size: cover !important;
+    border-bottom: 2px solid #79BD8F;
+}
+.school-title {
+    color: white;
+    margin-top: 0px !important;
+    text-align: center;
+    position: relative;
+    top: 6vh;
+    color: #FFFF9D;
+    text-shadow: 2px 2px #ff0000;
+}
+
+.write-back{
+	background-color: #f1f1f1;
+}
+
+.input-label {
+	color: #00A388 !important;
+}
+
+.text-message {
+	height: 100px !important;
+}
+
+.ion-ios-compose:before {
+	color: #00A388 !important;
+}
+
+.ion-ios-glasses:before {
+	color: #00A388 !important;
+}
+
+.ion-ios-home:before {
+	color: #00A388 !important;
+}
+
+.ion-ios-person:before {
+	color: #00A388 !important;
+}
+
+.bar-custom {
+	background-color: #00A388 !important;
+	color: white !important;
+}
+
+.bar.bar-stable .title {
+	color: white !important;
+	font-family: 'Shadows Into Light', cursive !important;
+	font-size:30px !important;
+}
+
+.school-title-big {
+	font-family: 'Shadows Into Light', cursive !important;
+	font-size: 40px !important;
+}
+
+.tab-custom {
+	background-color: black !important;
+	background-image: none !important;
+}
+
+.tabs {
+	background-color: #79BD8F !important;
+	color: white !important;
+}
+
+.tab-item {
+	color: white !important;
+}
+
+.block {
+	display: block !important;
+	font-size: 20px;
+}
+
+.number-result {
+	position: relative;
+	top: 3px;
+	left: 3px;
+}
+
+.up-down {
+	position: relative;
+	top: 10px;
+	margin-top: auto;
+	margin-bottom: auto;
+	color: #00A388 !important;
+}
+
+.time {
+	width: 40%;
+	color: #00A388 !important;
+}
+.comments {
+	width: 60%;
+	text-align: right;
+	color: #00A388 !important;
+}
+
+.title {
+	color: #00A388 !important;
+}
+
+.my-message {
+	color: #00A388 !important;
+	text-align: center;
+	margin-top: 10px !important;
+}
+
+.bar-stable .button.button-clear {
+	color: white !important;
+}
+
+.submit-background {
+	background-color: #79BD8F !important;
+	border-color: #79BD8F !important;
+}
+
+.popup-buttons .button:last-child {
+	background-color: #00A388 !important;
+	border-color: #00A388 !important;
+}
+
+.bottom-page {
+	height: 40px;
+}
