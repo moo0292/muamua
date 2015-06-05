@@ -3,15 +3,20 @@
         <form>
             <div class="list">
                 <label class="item item-input item-floating-label">
-                    <span class="input-label">ข้อความ</span>
-                    <input type="text" placeholder="ข้อความ" class="text-message" ng-model="body_text.body" id="text_body">
+                    <span class="input-label">หัวข้อ</span>
+                    <input type="text" placeholder="หัวข้อ" ng-model="body_text.title" id="text_title" ng-change="">
                 </label>
                 <label class="item item-input item-floating-label">
-                    <span class="input-label">หัวข้อ</span>
-                    <input type="text" placeholder="หัวข้อ" ng-model="body_text.title" id="text_title">
+                    <span class="input-label">ข้อความ</span>
+                    <!-- <input type="textarea" placeholder="ข้อความ" class="text-message" ng-model="body_text.body" id="text_body" ng-change="titleChange()"> -->
+                    <textarea placeholder="ข้อความ" class="text-message" ng-model="body_text.body" id="text_body" ng-change="titleChange()"></textarea>
                 </label>
             </div>
         </form>
+        <div class="divLength">
+            <p class="textLength">หัวข้อ {{body_text.title.length}} / 100</p>
+            <p class="textLength">ข้อความ {{body_text.body.length}} / 200</p>
+        </div>
         <button class="button button-block button-positive submit-button" ng-click="writeMessage()">
             Submit
         </button>

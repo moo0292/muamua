@@ -4,11 +4,11 @@
         <div collection-repeat="message in peekArray">
             <div class="post" ng-click="goPeekDetailMessage($index)">
                 <div class="row">
-                    <div class="col col-90">
+                    <div class="col col-80">
                         <h4 class="title">{{message.title}}</h4>
                         <p>{{message.text}}</p>
                     </div>
-                    <div class="col col-10 up-down">
+                    <div class="col col-20 up-down">
                         <p class="block number-result">{{message.rating}}</p>
                     </div>
                 </div>

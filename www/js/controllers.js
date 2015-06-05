@@ -8,6 +8,9 @@ angular.module('starter.controllers', [])
         $scope.currentFrNumber = 0;
 
         $scope.goToSpecific = function(frontNum) {
+            console.log($scope.allMessages);
+            console.log($scope.allMessages[frontNum]);
+            console.log(frontNum);
             $location.path('/tab/home/detail');
             $rootScope.selectedNumber = frontNum;
             $rootScope.selectedMessage = $scope.allMessages[frontNum]
@@ -126,48 +129,55 @@ angular.module('starter.controllers', [])
                         }
                     }
                     $ionicLoading.hide();
+                    console.log($scope.allMessages);
                     $scope.$broadcast('scroll.refreshComplete');
                 })
         };
 
         $scope.changeToHot = function() {
 
-            $ionicLoading.show({
-                template: 'Loading...'
+
+            $scope.allMessages.sort(function(a, b) {
+                return b.rating - a.rating;
             });
 
-            $http.get("http://10.0.1.181:7000/highest_rated/" + $rootScope.longt + "/" + $rootScope.lat)
-                .success(function(data) {
 
-                    $scope.allMessages = data;
 
-                    for (var i = 0; i < $scope.allMessages.length; i++) {
-                        //do an underscore contain to check if a user can still vote
-                        $scope.allMessages[i].frontNumber = i;
-                        // console.log($scope.allMessages[i].voters);
-                        if (_.contains($scope.allMessages[i].voters, $rootScope.uuid)) {
-                            $scope.allMessages[i].canUpVote = false;
-                            $scope.allMessages[i].canDownVote = false;
-                        } else {
-                            $scope.allMessages[i].canUpVote = true;
-                            $scope.allMessages[i].canDownVote = true;
-                        }
-                    }
-                    $ionicLoading.hide();
-                })
+
+            // $ionicLoading.show({
+            //     template: 'Loading...'
+            // });
+
+            // $http.get("http://10.0.1.181:7000/highest_rated/" + $rootScope.longt + "/" + $rootScope.lat)
+            //     .success(function(data) {
+
+            //         $scope.allMessages = data;
+
+            //         for (var i = 0; i < $scope.allMessages.length; i++) {
+            //             //do an underscore contain to check if a user can still vote
+            //             $scope.allMessages[i].frontNumber = i;
+            //             // console.log($scope.allMessages[i].voters);
+            //             if (_.contains($scope.allMessages[i].voters, $rootScope.uuid)) {
+            //                 $scope.allMessages[i].canUpVote = false;
+            //                 $scope.allMessages[i].canDownVote = false;
+            //             } else {
+            //                 $scope.allMessages[i].canUpVote = true;
+            //                 $scope.allMessages[i].canDownVote = true;
+            //             }
+            //         }
+            //         $ionicLoading.hide();
+            //     })
         };
 
-        $scope.reply_text = {};
-        $scope.reply_object = {};
+        $rootScope.deleteMessage = function(messageId) {
+            console.log(messageId);
 
-        $scope.submitReply = function() {
-
-            $scope.reply_text.message_id = $rootScope.selectedMessage._id;
-            $scope.reply_text.user_id = $rootScope.uuid;
+            $scope.sendObject = {};
+            $scope.sendObject.message_id = messageId;
 
             var confirmPopup = $ionicPopup.confirm({
                 title: 'Confirm',
-                template: 'Are you sure to post message?'
+                template: 'Do you want to report this message?'
             });
 
             confirmPopup.then(function(res) {
@@ -175,12 +185,11 @@ angular.module('starter.controllers', [])
                     $ionicLoading.show({
                         template: 'Loading...'
                     });
-                    $http.post("http://10.0.1.181:7000/post_reply", $scope.reply_text)
+                    $http.post("http://10.0.1.181:7000/report", $scope.sendObject)
                         .success(function(data) {
                             //you also have to do a post to add the comment onto a person's array
                             $ionicLoading.hide();
-                            $rootScope.selectedMessage.comment.push($scope.reply_text.answer);
-                            $scope.reply_text = {};
+                            alert("Message has been reported");
                         }, function(err) {
                             $ionicLoading.hide();
                             alert("Unable to post message");
@@ -189,7 +198,45 @@ angular.module('starter.controllers', [])
 
                 }
             });
+        }
 
+        $scope.reply_text = {};
+        $scope.reply_object = {};
+
+        $scope.submitReply = function() {
+
+            $scope.reply_text.message_id = $rootScope.selectedMessage._id;
+            $scope.reply_text.user_id = $rootScope.user_id;
+
+            if ($scope.reply_text.answer.length == 0) {
+                alert("Can't submit empty reply");
+            } else {
+                var confirmPopup = $ionicPopup.confirm({
+                    title: 'Confirm',
+                    template: 'Are you sure to post message?'
+                });
+
+                confirmPopup.then(function(res) {
+                    if (res) {
+                        $ionicLoading.show({
+                            template: 'Loading...'
+                        });
+                        $http.post("http://10.0.1.181:7000/post_reply", $scope.reply_text)
+                            .success(function(data) {
+                                //you also have to do a post to add the comment onto a person's array
+                                $ionicLoading.hide();
+                                $rootScope.selectedMessage.comment.push($scope.reply_text.answer);
+                                $scope.reply_text = {};
+                            }, function(err) {
+                                $ionicLoading.hide();
+                                alert("Unable to post reply");
+                            });
+                    } else {
+
+                    }
+                });
+
+            }
         };
 
         $ionicPlatform.ready(function() {
@@ -223,7 +270,6 @@ angular.module('starter.controllers', [])
                             $scope.allMessages = data;
                             for (var i = 0; i < $scope.allMessages.length; i++) {
                                 //do an underscore contain to check if a user can still vote
-                                $scope.allMessages[i].frontNumber = i;
                                 // console.log($scope.allMessages[i].voters);
                                 if (_.contains($scope.allMessages[i].voters, $rootScope.uuid)) {
                                     $scope.allMessages[i].canUpVote = false;
@@ -270,7 +316,9 @@ angular.module('starter.controllers', [])
                     $rootScope.peekArray = [];
                     //set the peek array
                     $rootScope.peekArray = data;
-
+                    $rootScope.peekArray.sort(function(a, b) {
+                        return b.rating - a.rating;
+                    });
                     //go to the peek page
                     $ionicLoading.hide();
                     $location.path('/tab/peek/detail');
@@ -288,32 +336,39 @@ angular.module('starter.controllers', [])
         $scope.submitReply = function() {
 
             $scope.reply_text.message_id = $rootScope.selectedPeekMessage._id;
+            $scope.reply_text.submit_user = $rootScope.user_id
 
-            console.log($scope.reply_text);
-            var confirmPopup = $ionicPopup.confirm({
-                title: 'Confirm',
-                template: 'Are you sure to post message?'
-            });
 
-            confirmPopup.then(function(res) {
-                if (res) {
-                    $ionicLoading.show({
-                        template: 'Loading...'
-                    });
-                    $http.post("http://10.0.1.181:7000/post_reply", $scope.reply_text)
-                        .success(function(data) {
-                            //you also have to do a post to add the comment onto a person's array
-                            $ionicLoading.hide();
-                            $rootScope.selectedPeekMessage.comment.push($scope.reply_text.answer);
-                            $scope.reply_text = {};
-                        }, function(err) {
-                            $ionicLoading.hide();
-                            alert("Unable to post message");
+
+            if ($scope.reply_text.answer.length == 0) {
+                alert("Can't submit empty reply");
+            } else {
+                var confirmPopup = $ionicPopup.confirm({
+                    title: 'Confirm',
+                    template: 'Are you sure to post message?'
+                });
+
+                confirmPopup.then(function(res) {
+                    if (res) {
+                        $ionicLoading.show({
+                            template: 'Loading...'
                         });
-                } else {
+                        $http.post("http://10.0.1.181:7000/post_reply", $scope.reply_text)
+                            .success(function(data) {
+                                //you also have to do a post to add the comment onto a person's array
+                                $ionicLoading.hide();
+                                $rootScope.selectedMessage.comment.push($scope.reply_text.answer);
+                                $scope.reply_text = {};
+                            }, function(err) {
+                                $ionicLoading.hide();
+                                alert("Unable to post message");
+                            });
+                    } else {
 
-                }
-            });
+                    }
+                });
+
+            }
 
         };
     })
@@ -376,15 +431,11 @@ angular.module('starter.controllers', [])
 
 
     })
-    .controller('MessageCtrl', function($scope) {
-        $scope.reply_text = "";
-
-        $scope.submitReply = function() {
-            console.log("Submit Reply");
-        }
-    })
     .controller('WriteCtrl', function($ionicPopup, $http, $scope, $rootScope, $ionicLoading) {
-        $scope.body_text = {};
+        $scope.body_text = {
+            title: "",
+            body: ""
+        };
 
 
         $scope.writeMessage = function() {
@@ -396,28 +447,36 @@ angular.module('starter.controllers', [])
             $scope.object.text = $scope.body_text.body;
             $scope.object.owner = $rootScope.user_id;
 
-            var confirmPopup = $ionicPopup.confirm({
-                title: 'Confirm',
-                template: 'Are you sure to post message?'
-            });
-            confirmPopup.then(function(res) {
-                if (res) {
-                    $ionicLoading.show({
-                        template: 'Loading...'
-                    });
-                    $http.post("http://10.0.1.181:7000/post_message", $scope.object)
-                        .success(function(data) {
-                            //you also have to do a post to add the comment onto a person's array
-                            $ionicLoading.hide();
-                            $scope.body_text = {};
-                            alert("successfully post message");
-                        }, function(err) {
-                            $ionicLoading.hide();
-                            alert("Unable to post message");
-                        });
-                } else {
+            if ($scope.body_text.title.length > 100 || $scope.body_text.body.length > 200) {
+                alert("You are going over word limit");
+            } else if ($scope.body_text.body.length == 0) {
+                alert("Your body is empty");
+            } else {
+                var confirmPopup = $ionicPopup.confirm({
+                    title: 'Confirm',
+                    template: 'Are you sure to post message?'
+                });
 
-                }
-            });
+
+                confirmPopup.then(function(res) {
+                    if (res) {
+                        $ionicLoading.show({
+                            template: 'Loading...'
+                        });
+                        $http.post("http://10.0.1.181:7000/post_message", $scope.object)
+                            .success(function(data) {
+                                //you also have to do a post to add the comment onto a person's array
+                                $ionicLoading.hide();
+                                $scope.body_text = {};
+                                alert("successfully post message");
+                            }, function(err) {
+                                $ionicLoading.hide();
+                                alert("Unable to post message");
+                            });
+                    } else {
+
+                    }
+                });
+            }
         }
     });

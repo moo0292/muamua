@@ -8,18 +8,18 @@
                         <p>{{selectedPeekMessage.text}}</p>
                     </div>
                     <div class="col col-10 up-down">
-                        <i ng-show="selectedPeekMessage.canDownVote" class="icon ion-chevron-up block up-button"></i>
+
                         <p class="block number-result">{{selectedPeekMessage.rating}}</p>
-                        <i ng-show="selectedPeekMessage.canDownVote" class="icon ion-chevron-down block"></i>
+
                     </div>
                 </div>
                 <div class="row align-bottom-comment">
                     <p class="time">{{selectedPeekMessage.date}}</p>
-                    <p class="comments">แจ้งลบข้อความ</p>
+                    <p class="comments" ng-click="deleteMessage(selectedPeekMessage._id)">แจ้งลบข้อความ</p>
                 </div>
             </div>
             <div class="bottom-border-comment"></div>
-            <div ng-repeat="comment in selectedPeekMessage.comment">
+            <div collection-repeat="comment in selectedPeekMessage.comment">
                 <div class="post">
                     <div class="row">
                         <h5 class="title"># {{$index}}</h5>
@@ -29,7 +29,7 @@
                     </div>
                     <div class="row align-bottom">
                         <p class="time"></p>
-                        <p class="comments">แจ้งลบข้อความ</p>
+                        <p class="comments" ng-click="deleteMessage(selectedPeekMessage._id)">แจ้งลบข้อความ</p>
                     </div>
                 </div>
                 <div class="bottom-border"></div>
