@@ -21,7 +21,7 @@ angular.module('starter.controllers', [])
             $scope.allMessages[arrayIndex].canDownVote = false;
             $scope.allMessages[arrayIndex].rating++;
 
-            $http.put("http://10.0.1.181:7000/upvote/" + $rootScope.uuid + "/" + messageId)
+            $http.put("https://ancient-brook-8956.herokuapp.com/upvote/" + $rootScope.uuid + "/" + messageId)
                 .success(function(data) {
 
                 }, function(err) {
@@ -33,7 +33,7 @@ angular.module('starter.controllers', [])
             $scope.allMessages[arrayIndex].canDownVote = false;
             $scope.allMessages[arrayIndex].rating--;
 
-            $http.put("http://10.0.1.181:7000/downvote/" + $rootScope.uuid + "/" + messageId)
+            $http.put("https://ancient-brook-8956.herokuapp.com/downvote/" + $rootScope.uuid + "/" + messageId)
                 .success(function(data) {
 
                 }, function(err) {
@@ -51,7 +51,7 @@ angular.module('starter.controllers', [])
             $rootScope.selectedMessage.canDownVote = false;
             $rootScope.selectedMessage.rating++;
 
-            $http.put("http://10.0.1.181:7000/upvote/" + $rootScope.uuid + "/" + messageId)
+            $http.put("https://ancient-brook-8956.herokuapp.com/upvote/" + $rootScope.uuid + "/" + messageId)
                 .success(function(data) {
 
                 }, function(err) {
@@ -68,7 +68,7 @@ angular.module('starter.controllers', [])
             $rootScope.selectedMessage.canDownVote = false;
             $rootScope.selectedMessage.rating--;
 
-            $http.put("http://10.0.1.181:7000/downvote/" + $rootScope.uuid + "/" + messageId)
+            $http.put("https://ancient-brook-8956.herokuapp.com/downvote/" + $rootScope.uuid + "/" + messageId)
                 .success(function(data) {
 
                 }, function(err) {
@@ -83,7 +83,7 @@ angular.module('starter.controllers', [])
                 template: 'Loading...'
             });
 
-            $http.get("http://10.0.1.181:7000/get_all/" + $rootScope.longt + "/" + $rootScope.lat)
+            $http.get("https://ancient-brook-8956.herokuapp.com/get_all/" + $rootScope.longt + "/" + $rootScope.lat)
                 .success(function(data) {
                     $scope.allMessages = data;
                     for (var i = 0; i < $scope.allMessages.length; i++) {
@@ -113,7 +113,7 @@ angular.module('starter.controllers', [])
                 template: 'Loading...'
             });
 
-            $http.get("http://10.0.1.181:7000/get_all/" + $rootScope.longt + "/" + $rootScope.lat)
+            $http.get("https://ancient-brook-8956.herokuapp.com/get_all/" + $rootScope.longt + "/" + $rootScope.lat)
                 .success(function(data) {
                     $scope.allMessages = data;
                     for (var i = 0; i < $scope.allMessages.length; i++) {
@@ -148,7 +148,7 @@ angular.module('starter.controllers', [])
             //     template: 'Loading...'
             // });
 
-            // $http.get("http://10.0.1.181:7000/highest_rated/" + $rootScope.longt + "/" + $rootScope.lat)
+            // $http.get("https://ancient-brook-8956.herokuapp.com/highest_rated/" + $rootScope.longt + "/" + $rootScope.lat)
             //     .success(function(data) {
 
             //         $scope.allMessages = data;
@@ -185,7 +185,7 @@ angular.module('starter.controllers', [])
                     $ionicLoading.show({
                         template: 'Loading...'
                     });
-                    $http.post("http://10.0.1.181:7000/report", $scope.sendObject)
+                    $http.post("https://ancient-brook-8956.herokuapp.com/report", $scope.sendObject)
                         .success(function(data) {
                             //you also have to do a post to add the comment onto a person's array
                             $ionicLoading.hide();
@@ -221,7 +221,7 @@ angular.module('starter.controllers', [])
                         $ionicLoading.show({
                             template: 'Loading...'
                         });
-                        $http.post("http://10.0.1.181:7000/post_reply", $scope.reply_text)
+                        $http.post("https://ancient-brook-8956.herokuapp.com/post_reply", $scope.reply_text)
                             .success(function(data) {
                                 //you also have to do a post to add the comment onto a person's array
                                 $ionicLoading.hide();
@@ -259,13 +259,13 @@ angular.module('starter.controllers', [])
                         template: 'Loading...'
                     });
 
-                    $http.get("http://10.0.1.181:7000/find_user/" + $rootScope.uuid)
+                    $http.get("https://ancient-brook-8956.herokuapp.com/find_user/" + $rootScope.uuid)
                         .success(function(user) {
                             $rootScope.user_id = user._id;
                             $rootScope.user_posts = user.posts;
                         })
 
-                    $http.get("http://10.0.1.181:7000/get_all/" + $rootScope.longt + "/" + $rootScope.lat)
+                    $http.get("https://ancient-brook-8956.herokuapp.com/get_all/" + $rootScope.longt + "/" + $rootScope.lat)
                         .success(function(data) {
                             $scope.allMessages = data;
                             for (var i = 0; i < $scope.allMessages.length; i++) {
@@ -310,7 +310,7 @@ angular.module('starter.controllers', [])
                 template: 'Loading...'
             });
 
-            $http.get("http://10.0.1.181:7000/school_rated/" + longitude + "/" + latitude)
+            $http.get("https://ancient-brook-8956.herokuapp.com/school_rated/" + longitude + "/" + latitude)
                 .success(function(data) {
 
                     $rootScope.peekArray = [];
@@ -353,7 +353,7 @@ angular.module('starter.controllers', [])
                         $ionicLoading.show({
                             template: 'Loading...'
                         });
-                        $http.post("http://10.0.1.181:7000/post_reply", $scope.reply_text)
+                        $http.post("https://ancient-brook-8956.herokuapp.com/post_reply", $scope.reply_text)
                             .success(function(data) {
                                 //you also have to do a post to add the comment onto a person's array
                                 $ionicLoading.hide();
@@ -399,7 +399,7 @@ angular.module('starter.controllers', [])
                     $ionicLoading.show({
                         template: 'Loading...'
                     });
-                    $http.post("http://10.0.1.181:7000/post_reply", $scope.reply_text)
+                    $http.post("https://ancient-brook-8956.herokuapp.com/post_reply", $scope.reply_text)
                         .success(function(data) {
                             //you also have to do a post to add the comment onto a person's array
                             $ionicLoading.hide();
@@ -420,7 +420,7 @@ angular.module('starter.controllers', [])
         };
 
         $scope.refresh = function() {
-            $http.get("http://10.0.1.181:7000/find_user/" + $rootScope.uuid)
+            $http.get("https://ancient-brook-8956.herokuapp.com/find_user/" + $rootScope.uuid)
                 .success(function(user) {
                     $rootScope.user_posts = user.posts;
                 })
@@ -463,7 +463,7 @@ angular.module('starter.controllers', [])
                         $ionicLoading.show({
                             template: 'Loading...'
                         });
-                        $http.post("http://10.0.1.181:7000/post_message", $scope.object)
+                        $http.post("https://ancient-brook-8956.herokuapp.com/post_message", $scope.object)
                             .success(function(data) {
                                 //you also have to do a post to add the comment onto a person's array
                                 $ionicLoading.hide();
