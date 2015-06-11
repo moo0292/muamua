@@ -7,13 +7,20 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova'])
 
-.run(function($ionicPlatform, $rootScope, $state) {
+.run(function($ionicPlatform, $rootScope, $state, $ionicLoading) {
     $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
         if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         }
+
+        $ionicLoading.show({
+            template: 'มั่วมั่ว...'
+        });
+
+        //if first time then show pop up
+        
 
 
     });
@@ -87,7 +94,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
             views: {
                 'home': {
                     templateUrl: 'templates/message.html',
-                    controller: 'HomeCtrl'
+                    controller: 'MessageCtrl'
                 }
             }
         })
