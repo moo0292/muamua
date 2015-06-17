@@ -3,23 +3,28 @@
         <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()">
         </ion-refresher>
         <h1 class="my-message school-title-big">{{peek_title}}</h1>
-        <div collection-repeat="message in peekArray">
-            <div class="post" ng-click="goPeekDetailMessage($index)">
-                <div class="row">
-                    <div class="col col-90">
-                        <h4 class="title">{{message.title}}</h4>
-                        <p>{{message.text}}</p>
+        <div ng-if="peekArray.length == 0">
+            <p class="rule-title">ไม่มีข้อความในมหาลัยนี้</p>
+        </div>
+        <div ng-if="peekArray.length > 0">
+            <div collection-repeat="message in peekArray">
+                <div class="post" ng-click="goPeekDetailMessage($index)">
+                    <div class="row">
+                        <div class="col col-90">
+                            <h4 class="title">{{message.title}}</h4>
+                            <p>{{message.text}}</p>
+                        </div>
+                        <div class="col col-10 up-down">
+                            <p class="block number-result">{{message.rating}}</p>
+                        </div>
                     </div>
-                    <div class="col col-10 up-down">
-                        <p class="block number-result">{{message.rating}}</p>
+                    <div class="row align-bottom">
+                        <p class="time">{{message.date}}</p>
+                        <p class="comments">{{message.comment.length}} comments</p>
                     </div>
                 </div>
-                <div class="row align-bottom">
-                    <p class="time">{{message.date}}</p>
-                    <p class="comments">{{message.comment.length}} comments</p>
-                </div>
+                <div class="bottom-border"></div>
             </div>
-            <div class="bottom-border"></div>
         </div>
     </ion-content>
 </ion-view>

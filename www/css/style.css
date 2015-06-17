@@ -1,6 +1,10 @@
 /* Empty. Add your own CSS if you like */
 
-.post {}
+
+
+body {
+    background-color: white;
+}
 
 .align-bottom {
     position: relative;
@@ -115,7 +119,7 @@
     background-size: cover !important;
     border-bottom: 2px solid #79BD8F;
 }
-
+/**/
 .school-title {
     color: white;
     margin-top: 0px !important;
@@ -136,6 +140,10 @@
 
 .text-message {
     height: 100px !important;
+    background-color: #f1f1f1 !important;
+}
+
+.text-input-backgroundcolor {
     background-color: #f1f1f1 !important;
 }
 
@@ -172,7 +180,6 @@
 }
 
 .tab-custom {
-    background-color: black !important;
     background-image: none !important;
 }
 

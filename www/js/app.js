@@ -16,22 +16,26 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         }
 
         $ionicLoading.show({
-            template: 'มั่วมั่ว...'
+            template: '<ion-spinner icon="ripple" class="spinner-balanced"></ion-spinner>'
         });
 
         //if first time then show pop up
-        
+
 
 
     });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
     // Ionic uses AngularUI Router which uses the concept of states
     // Learn more here: https://github.com/angular-ui/ui-router
     // Set up the various states which the app can be in.
     // Each state's controller can be found in controllers.js
+
+
+    $ionicConfigProvider.views.transition('none')
+
     $stateProvider
 
     // setup an abstract state for the tabs directive

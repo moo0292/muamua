@@ -2,25 +2,30 @@
     <ion-content class="write-back">
         <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()">
         </ion-refresher>
-        <div collection-repeat="message in allMessages">
-            <div class="post">
-                <div class="row">
-                    <div class="col col-90" ng-click="goToSpecific($index)">
-                        <h4 class="title">{{message.title}}</h4>
-                        <p>{{message.text}}</p>
+        <div ng-if="allMessages.length == 0">
+            <p class="rule-title">{{customMessage}}</p>
+        </div>
+        <div  ng-if="allMessages.length > 0">
+            <div collection-repeat="message in allMessages">
+                <div class="post">
+                    <div class="row">
+                        <div class="col col-90" ng-click="goToSpecific($index)">
+                            <h4 class="title">{{message.title}}</h4>
+                            <p>{{message.text}}</p>
+                        </div>
+                        <div class="col col-10 up-down">
+                            <i ng-show="message.canUpVote" class="icon ion-chevron-up block up-button" ng-click="voteUp($index, message._id)"></i>
+                            <p class="block number-result">{{message.rating}}</p>
+                            <i ng-show="message.canDownVote" class="icon ion-chevron-down block" ng-click="voteDown($index, message._id)"></i>
+                        </div>
                     </div>
-                    <div class="col col-10 up-down">
-                        <i ng-show="message.canUpVote" class="icon ion-chevron-up block up-button" ng-click="voteUp($index, message._id)"></i>
-                        <p class="block number-result">{{message.rating}}</p>
-                        <i ng-show="message.canDownVote" class="icon ion-chevron-down block" ng-click="voteDown($index, message._id)"></i>
+                    <div class="row align-bottom" ng-click="goToSpecific($index)">
+                        <p class="time">{{message.date}}</p>
+                        <p class="comments">{{message.comment.length}} comments</p>
                     </div>
                 </div>
-                <div class="row align-bottom" ng-click="goToSpecific($index)">
-                    <p class="time">{{message.date}}</p>
-                    <p class="comments">{{message.comment.length}} comments</p>
-                </div>
+                <div class="bottom-border"></div>
             </div>
-            <div class="bottom-border"></div>
         </div>
         <div class="bottom-page"></div>
     </ion-content>
